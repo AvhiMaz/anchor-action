@@ -1,0 +1,25 @@
+[package]
+name = "anchor-audit-action"
+version = "0.1.0"
+edition = "2021"
+description = "Static security analysis for Solana Anchor programs"
+license = "MIT"
+
+[[bin]]
+name = "anchor-audit"
+path = "src/main.rs"
+
+[dependencies]
+syn = { version = "2", features = ["full", "parsing", "visit"] }
+quote = "1"
+proc-macro2 = { version = "1", features = ["span-locations"] }
+walkdir = "2"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+reqwest = { version = "0.12", features = ["json", "rustls-tls"], default-features = false }
+tokio = { version = "1", features = ["macros", "rt-multi-thread"] }
+
+[profile.release]
+opt-level = "z"
+lto = true
+strip = true

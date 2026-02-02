@@ -1,0 +1,36 @@
+name: "Anchor Security Audit"
+description: "Static security analysis for Solana Anchor programs"
+author: "avhidotsol"
+
+inputs:
+  path:
+    description: "Path to scan (defaults to workspace root)"
+    required: false
+    default: "."
+  fail_on:
+    description: "Minimum severity to fail on: high, medium, low, none"
+    required: false
+    default: "high"
+  github_token:
+    description: "GitHub token for PR comments and check runs"
+    required: false
+
+runs:
+  using: "docker"
+  image: "Dockerfile"
+  env:
+    INPUT_PATH: ${{ inputs.path }}
+    INPUT_FAIL_ON: ${{ inputs.fail_on }}
+    GITHUB_TOKEN: ${{ inputs.github_token }}
+
+outputs:
+  finding-count:
+    description: "Total number of findings"
+  has-high:
+    description: "Whether any high severity findings exist"
+  has-medium:
+    description: "Whether any medium+ severity findings exist"
+
+branding:
+  icon: "shield"
+  color: "purple"
