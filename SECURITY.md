@@ -4,7 +4,7 @@
 
 If you discover a security vulnerability in this project, please report it responsibly.
 
-**Email:** avhidotsol@gmail.com
+**Email:** dev@avhi.in
 
 Please include:
 
